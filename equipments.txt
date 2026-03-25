@@ -3,4 +3,8 @@ Bicycle
 RowingMachine
 BenchPress
 Dumbbells
- 
+Elliptical
+PullUpBar
+LegPress
+CableMachine
+Treadmill2
