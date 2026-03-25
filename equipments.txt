@@ -1,0 +1,6 @@
+Treadmill
+Bicycle
+RowingMachine
+BenchPress
+Dumbbells
+ 
