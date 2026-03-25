@@ -2,3 +2,5 @@ Basic 100.0 30
 Standard 180.0 30
 Premium 250.0 30
 Annual 900.0 365
+Student 50.0 30
+ 
