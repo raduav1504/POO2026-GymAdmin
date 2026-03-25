@@ -10,6 +10,8 @@
 #include <cstring>
 #include <iomanip>
 #include <algorithm>
+#include "include/Example.h"
+
 
 // ============================================================================
 // 1. CLASA MEMBERSHIPPLAN
@@ -27,8 +29,6 @@ public:
         : planType{type}, priceRON{price}, durationDays{days} {}
 
     const std::string& getPlanType()    const { return planType; }
-    float              getPrice()       const { return priceRON; }
-    int                getDuration()    const { return durationDays; }
 
     // Returneaza true daca abonamentul este premium (pret > 200 RON)
     bool isPremium() const { return priceRON > 200.0f; }
@@ -105,7 +105,7 @@ private:
     std::string currentUser;
 
 public:
-    ecplicit Equipment(const char* type_, int totalUsage = 0)
+   explicit Equipment(const char* type_, int totalUsage = 0)
         : inUse{false}, usageTimeRemaining{0},
           totalUsageMinutes{totalUsage}, currentUser{""} {
         type = new char[strlen(type_) + 1];
