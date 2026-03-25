@@ -3,4 +3,9 @@ Maria 1002 Premium
 Andrei 1003 Standard
 Elena 1004 Annual
 Mihai 1005 Basic
+Cristina 1006 Premium
+Bogdan 1007 Student
+Laura 1008 Standard
+Alexandru 1009 Annual
+Ioana 1010 Student
  
