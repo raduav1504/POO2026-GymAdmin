@@ -16,14 +16,9 @@ public:
     bool isPremium() const {return priceR > 200.0f;}
 
     friend std::ostream& operator<<(std::ostream& os, const MembershipPlan& p) {
-        os << "Plan: " << p.planType
-           << " | Pret: " << p.priceR << " RON"
-           << " | Durata: " << p.durationD << " zile";
-        return os;
-    }
+        os << "Plan: " << p.planType<< " | Pret: " << p.priceR << "RON"<< " | Durata: " << p.durationD << " zile";
+        return os;}
 };
-
-
 // clasa membru
 class Member {
     std::string name;
@@ -53,14 +48,9 @@ public:
     void addMinutes(int minutes) {totalMinutes += minutes;}
 
     friend std::ostream& operator<<(std::ostream& os, const Member& m) {
-        os << "Membru: " << m.name
-           << " | ID: " << m.membershipID
-           << " | " << m.plan
-           << " | Minute totale: " << m.totalMinutes;
-        return os;
-    }
+        os << "Membru: " << m.name << " | ID: " << m.membershipID<< " | " << m.plan<< " | Minute totale: " << m.totalMinutes;
+        return os;}
 };
-
 // clasa echipament
 class Equipment {
     std::string type;
@@ -70,10 +60,10 @@ class Equipment {
     std::string cUser;
 public:
     explicit Equipment(const std::string& type_): type{type_}, inUse{false}, usageTimeR{0},totalMin{0}, cUser{""} {}
-    const std::string& getType() const { return type; }
-    bool isInUse() const { return inUse; }
-    int getTotalUsage() const { return totalMin; }
-    const std::string& getcUser() const { return cUser; }
+    const std::string& getType() const {return type;}
+    bool isInUse() const {return inUse;}
+    int getTotalUsage() const{return totalMin;}
+    const std::string& getcUser() const {return cUser;}
 
     void startUsage(int duration, const std::string& user) {
         if (!inUse) {
@@ -82,42 +72,34 @@ public:
             cUser = user;
             std::cout << type << " inceput de " << user<<" pentru "<<duration << " min\n";
         } else {
-            std::cout << type << " este deja folosit de "<< cUser << "\n";
-        }
+            std::cout << type << " este deja folosit de "<< cUser << "\n";}
     }
-
     // returnam numele userului daca sesiunea s a terminat
     std::string update() {
         if (!inUse) return "";
         usageTimeR--;
         totalMin++;
-        if (usageTimeR <= 0) {
-            std::string finishedUser = cUser;
-            inUse = false;
-            cUser = "";
+        if (usageTimeR <= 0){
+            std::string finishedUser=cUser;
+            inUse=false;
+            cUser="";
             std::cout << type << "sesiune terminata pentru "<<finishedUser<< "\n";
             return finishedUser;
         }
         return "";
     }
-
     friend std::ostream& operator<<(std::ostream& os, const Equipment& eq) {
-        os << "Echipament: " << eq.type
-           << " | Status: " << (eq.inUse ? "Ocupat" : "Liber")
-           << " | Total: " << eq.totalMin << " min";
+        os << "Echipament: " << eq.type<< " | Status: " << (eq.inUse ? "Ocupat" : "Liber")<< " | Total: " << eq.totalMin << " min";
         if (eq.inUse)
-            os << " | Ramas: " << eq.usageTimeR
-               << " min | User: " << eq.cUser;
+            os << " | Ramas: " << eq.usageTimeR<<" min| User: " << eq.cUser;
         return os;
     }
 };
-
 //clasa Gym
 class Gym {
     std::string name;
     std::vector<Equipment> equipments;
     std::vector<Member> members;
-
     int findMemberIndex(int id) const {
         for (int i=0; i<(int)members.size(); i++)
             if (members[i].getID()==id) 
@@ -184,42 +166,38 @@ public:
 
     void raportComplet() const {
         int echipOcupate = 0;
-        for (int i = 0; i < (int)equipments.size(); i++)
+        for (int i=0;i<(int)equipments.size(); i++)
             if (equipments[i].isInUse()) echipOcupate++;
-
-        int membriActivi = 0;
+        int membriActivi=0;
         for (int i = 0; i < (int)members.size(); i++)
             if (members[i].getTotalMinutes() > 0) membriActivi++;
-
         std::cout << "\n======"<< name <<" ======\n";
         std::cout << "Echipamente: " << equipments.size()<< "| Ocupate: " << echipOcupate<< " | Libere: " << (equipments.size() - echipOcupate) << "\n";
         std::cout << "Membri: " << members.size()<< " |Activi: " << membriActivi << "\n";
 
         if (!equipments.empty()) {
-            int topEqIdx = 0;
-            for (int i = 1; i < (int)equipments.size(); i++)
+            int topEqIdx =0;
+            for (int i=1;i<(int)equipments.size(); i++)
                 if (equipments[i].getTotalUsage() > equipments[topEqIdx].getTotalUsage())
                     topEqIdx = i;
-            std::cout << "Top echipament: " << equipments[topEqIdx].getType()<< " (" << equipments[topEqIdx].getTotalUsage() << " min)\n";
+            std::cout << "Top echipament:"<<equipments[topEqIdx].getType()<<" ("<<equipments[topEqIdx].getTotalUsage()<< " min)\n";
         }
         if (!members.empty()) {
             int topIdx = 0;
             for (int i = 1; i < (int)members.size(); i++)
                 if (members[i].getTotalMinutes() > members[topIdx].getTotalMinutes())
                     topIdx = i;
-            std::cout << "Cel mai activ: " << members[topIdx].getName() << " (" << members[topIdx].getTotalMinutes() << " min)\n";
+            std::cout << "Cel mai activ: " << members[topIdx].getName()<<" (" <<members[topIdx].getTotalMinutes()<<" min)\n";
         }
-
         std::cout << "Membri premium: ";
         bool oricare = false;
-        for (int i = 0; i < (int)members.size(); i++)
+        for (int i=0;i<(int)members.size(); i++)
             if (members[i].getPlan().isPremium()) {
                 std::cout << members[i].getName() << " ";
                 oricare = true;
             }
         if (!oricare) std::cout << "niciunul";
     }
-
     void afiseazaTopMembri() const {
         std::vector<int> ordine;
         for (int i=0; i<(int)members.size(); i++)
@@ -236,7 +214,6 @@ public:
         for (int i=0; i<(int)ordine.size(); i++)
             std::cout<<i+1 << ". "<<members[ordine[i]] << "\n";
     }
-
     friend std::ostream& operator<<(std::ostream& os, const Gym& g) {
         os << "\n=== Sala: " << g.name << " ===\n";
         os << "Echipamente (" << g.equipments.size() << "):\n";
@@ -248,7 +225,6 @@ public:
         return os;
     }
 };
-
 // incarcaPlanuri e fucntie separata, nu face parte din nicio clasa
 std::vector<MembershipPlan> incarcaPlanuri(const std::string& fisier) {
     std::vector<MembershipPlan> planuri;
@@ -263,9 +239,7 @@ std::vector<MembershipPlan> incarcaPlanuri(const std::string& fisier) {
     return planuri;
 }
 
-
 //main
-
 int main() {
     std::vector<MembershipPlan> planuri = incarcaPlanuri("plans.txt");
 
