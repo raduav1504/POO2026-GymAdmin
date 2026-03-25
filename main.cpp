@@ -68,9 +68,9 @@ class Equipment {
     int totalUsageMinutes;
     std::string currentUser;
 public:
-    explicit Equipment(const std::string& type_, int totalUsage = 0)
+    explicit Equipment(const std::string& type_)
         : type{type_}, inUse{false}, usageTimeRemaining{0},
-          totalUsageMinutes{totalUsage}, currentUser{""} {}
+          totalUsageMinutes{0}, currentUser{""} {}
 
     const std::string& getType() const { return type; }
     bool isInUse() const { return inUse; }
@@ -279,15 +279,15 @@ std::vector<MembershipPlan> incarcaPlanuri(const std::string& fisier) {
 int main() {
     std::vector<MembershipPlan> planuri = incarcaPlanuri("plans.txt");
 
-    Gym sala("FitZone");
+    Gym sala("Radu's Gym");
     sala.incarcaMembri("members.txt", planuri);
     sala.incarcaEchipamente("equipments.txt");
 
-    std::cout << sala;
+    std::cout<<sala;
 
     int choice = -1;
     while (choice != 0) {
-        std::cout << "\n--- Meniu ---\n"
+        std::cout << "\n------------\n"
                   << "1. Incepe sesiune\n"
                   << "2. Avanseaza 1 minut\n"
                   << "3. Afiseaza sala\n"
@@ -302,9 +302,12 @@ int main() {
         switch (choice) {
         case 1: {
             int eqIdx, memberID, durata;
-            std::cout << "Index echipament: "; std::cin >> eqIdx;
-            std::cout << "ID membru: ";        std::cin >> memberID;
-            std::cout << "Durata (min): ";     std::cin >> durata;
+            std::cout << "Index echipament: "; 
+            std::cin >> eqIdx;
+            std::cout << "ID membru: ";        
+            std::cin >> memberID;
+            std::cout << "Durata (min): ";     
+            std::cin >> durata;
             sala.startSesiune(eqIdx, memberID, durata);
             break;
         }
