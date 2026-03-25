@@ -10,8 +10,6 @@
 #include <cstring>
 #include <iomanip>
 #include <algorithm>
-#include <array>
-#include "include/Example.h"
 
 // ============================================================================
 // 1. CLASA MEMBERSHIPPLAN
@@ -107,7 +105,7 @@ private:
     std::string currentUser;
 
 public:
-    explicit Equipment(const char* type_, int totalUsage = 0)
+    Equipment(const char* type_, int totalUsage = 0)
         : inUse{false}, usageTimeRemaining{0},
           totalUsageMinutes{totalUsage}, currentUser{""} {
         type = new char[strlen(type_) + 1];
@@ -421,6 +419,8 @@ int main() {
                   << "3. Afiseaza starea salii\n"
                   << "4. Raport complet\n"
                   << "5. Top membri dupa activitate\n"
+                  << "6. Adauga echipament nou\n"
+                  << "7. Adauga membru nou\n"
                   << "0. Iesire\n"
                   << "Optiune: ";
         std::cin >> choice;
@@ -447,6 +447,35 @@ int main() {
         case 5:
             sala.afiseazaTopMembri();
             break;
+        case 6: {
+            std::string tip;
+            std::cout << "Tip echipament: ";
+            std::cin >> tip;
+            sala.adaugaEchipament(Equipment(tip.c_str()));
+            std::cout << "Echipament adaugat.\n";
+            break;
+        }
+        case 7: {
+            std::string numeMembru, tipPlan;
+            int id;
+            std::cout << "Nume: ";    std::cin >> numeMembru;
+            std::cout << "ID: ";      std::cin >> id;
+            std::cout << "Tip plan (Basic/Standard/Premium/Annual): ";
+            std::cin >> tipPlan;
+            // Cautam planul in lista incarcata din fisier
+            bool gasit = false;
+            for (const auto& p : planuri) {
+                if (p.getPlanType() == tipPlan) {
+                    sala.adaugaMembru(Member(numeMembru, id, p));
+                    std::cout << "Membru adaugat.\n";
+                    gasit = true;
+                    break;
+                }
+            }
+            if (!gasit)
+                std::cout << "Tipul de plan '" << tipPlan << "' nu exista.\n";
+            break;
+        }
         case 0:
             std::cout << "La revedere!\n";
             break;
