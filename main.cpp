@@ -107,7 +107,7 @@ private:
     std::string currentUser;
 
 public:
-    Equipment(const char* type_, int totalUsage = 0)
+    explicit Equipment(const char* type_, int totalUsage = 0)
         : inUse{false}, usageTimeRemaining{0},
           totalUsageMinutes{totalUsage}, currentUser{""} {
         type = new char[strlen(type_) + 1];
