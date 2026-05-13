@@ -171,7 +171,7 @@ void Gym::startSesiune(int eqIndex, int memberID, int durata) {
     // Daca echipamentul apartine unui serviciu, verificam accesul
     const std::string& serviciu = equipments[eqIndex].getServiceName();
     if (serviciu != "none") {
-        GymService* s = findService(serviciu);
+        const GymService* s = findService(serviciu);
         if (s != nullptr) {
             s->verificaAcces(members[mi]); // apel virtual prin pointer de baza
         }
@@ -335,7 +335,7 @@ void Gym::raportServicii() const {
 
         // dynamic_cast cu sens: afisam locuri libere si instructor
         // doar pentru GroupClass - informatii care nu exista pe baza
-        GroupClass* gc = dynamic_cast<GroupClass*>(services[i]);
+        const GroupClass* gc = dynamic_cast<const GroupClass*>(services[i]);
         if (gc != nullptr) {
             std::cout << "  Locuri libere: " << gc->getLocuriLibere()
                       << "/" << gc->getCapacitateMax() << "\n";

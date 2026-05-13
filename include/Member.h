@@ -42,7 +42,6 @@ public:
     const MembershipPlan& getPlan()           const { return plan; }
     int                   getTotalMinutes()   const { return totalMinutes; }
     bool                  isOcupat()          const { return ocupat; }
-    const std::string&    getServiciuCurent() const { return serviciuCurent; }
 
     void addMinutes(int minutes) { totalMinutes += minutes; }
 

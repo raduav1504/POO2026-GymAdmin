@@ -20,6 +20,4 @@ public:
 
     // Returneaza caloriile arse: durata * intensitate * 5 cal/min
     std::string calculeazaRezultat() const override;
-
-    int getIntensitate() const { return intensitate; }
 };

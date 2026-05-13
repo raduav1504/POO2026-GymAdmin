@@ -21,6 +21,4 @@ public:
     // Returneaza costul: durataInitiala / 60.0 * costPerOra
     std::string calculeazaRezultat() const override;
 
-    const std::string& getAntrenor() const { return numeAntrenor; }
-    float              getCostPerOra() const { return costPerOra; }
 };

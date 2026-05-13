@@ -41,7 +41,6 @@ public:
     bool update();
 
     const std::string&      getName()        const { return name; }
-    int                     getDurataRamasa() const { return durataRamasa; }
     const std::vector<int>& getParticipanti() const { return idParticipanti; }
 
     // Contor static: cate servicii exista in acest moment
