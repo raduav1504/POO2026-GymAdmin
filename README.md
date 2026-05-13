@@ -1,4 +1,4 @@
-#  GymAdmin - Fitness Club Manager
+#  GymAdmin- Fitness Club Manager
 GymAdmin este un sistem de gestiune a unei salilor de fitness, dezvoltat în C++, care administrează membri, abonamente și echipamente prin principii OOP.
 
 ### Folosiți template-ul corespunzător grupei voastre!
