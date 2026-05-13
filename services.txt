@@ -2,3 +2,4 @@ CardioZone 7 30
 GroupClass Yoga 15 Ana 60
 GroupClass Zumba 20 Mihai 45
 PersonalTraining Radu 80.0 60
+SaunaSession 20 20

@@ -3,6 +3,7 @@
 #include "../include/CardioZone.h"
 #include "../include/GroupClass.h"
 #include "../include/PersonalTraining.h"
+#include "../include/SaunaSession.h"
 #include <fstream>
 #include <iomanip>
 #include <iostream>
@@ -141,6 +142,11 @@ void Gym::incarcaServicii(const std::string& fisier) {
             int durata;
             fin >> antrenor >> cost >> durata;
             s = new PersonalTraining(antrenor, cost, durata);
+        }
+        else if (tip == "SaunaSession") {
+            int durataMax, durata;
+            fin >> durataMax >> durata;
+            s = new SaunaSession(durataMax, durata);
         }
         if (s != nullptr) {
             serviceIndex[s->getName()] = (int)services.size();

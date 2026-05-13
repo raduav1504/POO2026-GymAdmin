@@ -39,6 +39,7 @@ add_executable(${MAIN_EXECUTABLE_NAME}
     src/GroupClass.cpp
     src/PersonalTraining.cpp
     src/Gym.cpp
+    src/SaunaSession.cpp
 )
 
 set_compiler_flags(RUN_SANITIZERS ${USE_ASAN} TARGET_NAMES ${MAIN_EXECUTABLE_NAME})
