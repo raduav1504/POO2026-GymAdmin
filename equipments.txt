@@ -1,10 +1,10 @@
-Treadmill
-Bicycle
-RowingMachine
-BenchPress
-Dumbbells
-Elliptical
-PullUpBar
-LegPress
-CableMachine
-Treadmill2
+Treadmill CardioZone
+Bicycle CardioZone
+RowingMachine CardioZone
+BenchPress none
+Dumbbells none
+Elliptical CardioZone
+PullUpBar none
+LegPress none
+CableMachine none
+Kettlebell none
