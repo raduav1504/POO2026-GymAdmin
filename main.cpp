@@ -4,10 +4,8 @@
 #include "include/GymExceptions.h"
 
 int main() {
-    // 1. Incarcam planurile (functie libera)
     std::vector<MembershipPlan> planuri = incarcaPlanuri("plans.txt");
 
-    // 2. Cream sala si incarcam datele din fisiere
     Gym sala("FitZone");
     try {
         sala.incarcaMembri("members.txt", planuri);
@@ -18,10 +16,8 @@ int main() {
     sala.incarcaEchipamente("equipments.txt");
     sala.incarcaServicii("services.txt");
 
-    // 3. Afisam starea initiala
     std::cout << sala;
 
-    // 4. Meniu interactiv
     int choice = -1;
     while (choice != 0) {
         std::cout << "\n------------\n"
@@ -42,9 +38,12 @@ int main() {
         switch (choice) {
         case 1: {
             int eqIdx, memberID, durata;
-            std::cout << "Index echipament: "; std::cin >> eqIdx;
-            std::cout << "ID membru: ";        std::cin >> memberID;
-            std::cout << "Durata (min): ";     std::cin >> durata;
+            std::cout << "Index echipament: "; 
+            std::cin >> eqIdx;
+            std::cout << "ID membru: ";        
+            std::cin >> memberID;
+            std::cout << "Durata (min): ";     
+            std::cin >> durata;
             try {
                 sala.startSesiune(eqIdx, memberID, durata);
             } catch (const MembruOcupatException& e) {
@@ -57,8 +56,12 @@ int main() {
             break;
         }
         case 2:
-            sala.updateSala();
-            std::cout << "Avansat 1 minut.\n";
+            int nMinute;
+            std::cout<<" Cate minute sa avansez: ";
+            std::cin>> nMinute;
+            for (int i = 0; i<=nMinute; i ++)
+                sala.updateSala();
+            std::cout << "Avansat" <<  nMinute<<" minute.\n";
             break;
         case 3:
             std::cout << sala;
@@ -71,8 +74,10 @@ int main() {
             break;
         case 6: {
             std::string tip, serviciu;
-            std::cout << "Tip echipament: "; std::cin >> tip;
-            std::cout << "Serviciu (CardioZone/none/...): "; std::cin >> serviciu;
+            std::cout << "Tip echipament: "; 
+            std::cin >> tip;
+            std::cout << "Serviciu (CardioZone/none/...): "; 
+            std::cin >> serviciu;
             sala.adaugaEchipament(Equipment(tip, serviciu));
             std::cout << "Echipament adaugat.\n";
             break;
@@ -80,9 +85,12 @@ int main() {
         case 7: {
             std::string numeMembru, tipPlan;
             int id;
-            std::cout << "Nume: ";     std::cin >> numeMembru;
-            std::cout << "ID: ";       std::cin >> id;
-            std::cout << "Tip plan: "; std::cin >> tipPlan;
+            std::cout << "Nume: "; 
+            std::cin >> numeMembru;
+            std::cout << "ID: ";       
+            std::cin >> id;
+            std::cout << "Tip plan: ";
+            std::cin >> tipPlan;
             bool gasit = false;
             for (int i = 0; i < (int)planuri.size(); i++) {
                 if (planuri[i].getPlanType() == tipPlan) {

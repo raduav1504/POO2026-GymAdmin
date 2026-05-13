@@ -2,23 +2,23 @@
 
 int GymService::totalServiciiActive = 0;
 
-GymService::GymService(const std::string& name_, int durata)
-    : name{name_}, durataRamasa{0}, durataInitiala{durata} {
+GymService::GymService(const std::string& name_, int durata): name{name_}, durataRamasa{0}, durataInitiala{durata} 
+{
     ++totalServiciiActive;
 }
 
 GymService::GymService(const GymService& other)
-    : name{other.name}, durataRamasa{other.durataRamasa},
-      durataInitiala{other.durataInitiala}, idParticipanti{other.idParticipanti} {
+    : name{other.name}, durataRamasa{other.durataRamasa},durataInitiala{other.durataInitiala}, idParticipanti{other.idParticipanti} 
+    {
     ++totalServiciiActive;
 }
 
 GymService& GymService::operator=(const GymService& other) {
     if (this != &other) {
-        name            = other.name;
-        durataRamasa    = other.durataRamasa;
-        durataInitiala  = other.durataInitiala;
-        idParticipanti  = other.idParticipanti;
+        name = other.name;
+        durataRamasa = other.durataRamasa;
+        durataInitiala = other.durataInitiala;
+        idParticipanti = other.idParticipanti;
     }
     return *this;
 }
@@ -32,7 +32,7 @@ int GymService::getTotalServiciiActive() {
 }
 
 void GymService::adaugaParticipant(int memberID) {
-    // Prima persoana care se inscrie porneste timer-ul sesiunii
+    // timer pornit de prima persona care se inscrie
     if (!esteActiv()) durataRamasa = durataInitiala;
     idParticipanti.push_back(memberID);
 }
@@ -40,7 +40,6 @@ void GymService::adaugaParticipant(int memberID) {
 bool GymService::esteActiv() const {
     return durataRamasa > 0;
 }
-
 bool GymService::update() {
     if (!esteActiv()) return false;
     durataRamasa--;
@@ -48,19 +47,17 @@ bool GymService::update() {
         durataRamasa = 0;
         idParticipanti.clear();
         std::cout << "  [Serviciu] " << name << " s-a incheiat.\n";
-        return true; // sesiunea s-a terminat
+        return true; 
     }
     return false;
 }
 
 // Interfata non-virtuala: operator<< apeleaza afisare() virtuala
 void GymService::afisare(std::ostream& os) const {
-    os << "Serviciu: " << name
-       << " | Ramas: " << durataRamasa << " min"
-       << " | Participanti: " << idParticipanti.size();
+    os << "Serviciu: " << name<< " | Ramas: " << durataRamasa << " min"<< " | Participanti: " << idParticipanti.size();
 }
 
 std::ostream& operator<<(std::ostream& os, const GymService& s) {
-    s.afisare(os); // dispatch virtual
+    s.afisare(os); 
     return os;
 }

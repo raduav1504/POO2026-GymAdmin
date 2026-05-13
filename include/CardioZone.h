@@ -1,10 +1,10 @@
 #pragma once
 #include "GymService.h"
 
-// Zona de cardio - accesibila tuturor membrilor
-// calculeazaRezultat() returneaza caloriile arse estimat
+//zona de cardio- toti membrii au voie
+
 class CardioZone : public GymService {
-    int intensitate;         // nivel 1-10, citit din fisier
+    int intensitate;        //din fisier
 
 protected:
     void afisare(std::ostream& os) const override;
@@ -14,9 +14,7 @@ public:
 
     GymService* clone() const override;
 
-    // Toti membrii au acces la CardioZone
     void verificaAcces(const Member& m) const override;
-
-    // Returneaza caloriile arse: durata * intensitate * 5 cal/min
+    // caloriile arse
     std::string calculeazaRezultat() const override;
 };
