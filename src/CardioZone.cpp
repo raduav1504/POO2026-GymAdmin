@@ -4,7 +4,7 @@
 
 CardioZone::CardioZone(int intensitate_, int durata)
     : GymService("CardioZone", durata),
-      intensitate{intensitate_}, caloriileTotaleArse{0} {}
+      intensitate{intensitate_} {}
 
 GymService* CardioZone::clone() const {
     return new CardioZone(*this);
