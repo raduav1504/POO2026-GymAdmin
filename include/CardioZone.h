@@ -5,7 +5,6 @@
 // calculeazaRezultat() returneaza caloriile arse estimat
 class CardioZone : public GymService {
     int intensitate;         // nivel 1-10, citit din fisier
-    int caloriileTotaleArse; // acumulate pe durata sesiunii
 
 protected:
     void afisare(std::ostream& os) const override;
